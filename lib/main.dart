@@ -1,70 +1,70 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:get_it/get_it.dart';
+import 'package:hive/hive.dart';
+import 'package:mindmaster/global/repository/api_repository.dart';
+import 'package:mindmaster/global/routes/router.dart';
+import 'package:path_provider/path_provider.dart' as path_provider;
 
-void main() {
-  runApp(const MyApp());
+import 'global/services/dio_service.dart';
+import 'global/services/token_service.dart';
+
+final dioProvider = Provider<Dio>((ref) => Dio());
+
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+
+  final appDocumentDir = await path_provider.getApplicationDocumentsDirectory();
+  Hive.init(appDocumentDir.path);
+  await Hive.openBox<String>('tokenBox');
+  await Hive.openBox<bool>('onBoardBox');
+  await Hive.openBox<String>('oncomplete');
+  await Hive.openBox<String>('expiry');
+  await DioService().initialize();
+  await TokenService().initializePrefs();
+
+  runApp(
+    const ProviderScope(
+      child: MyApp(),
+    ),
+  );
 }
 
-class MyApp extends StatelessWidget {
-  const MyApp({super.key});
+class MyApp extends ConsumerStatefulWidget {
+  const MyApp({
+    super.key,
+  });
 
-  // This widget is the root of your application.
+  @override
+  ConsumerState<MyApp> createState() => _MyAppState();
+}
+
+class _MyAppState extends ConsumerState<MyApp> {
+  @override
+  void initState() {
+    super.initState();
+    if (!GetIt.I.isRegistered<ApiRepository>()) {
+      GetIt.I.registerSingleton(ApiRepository());
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'Flutter Demo',
-      theme: ThemeData(
-        colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
-        useMaterial3: true,
-      ),
-      home: const MyHomePage(title: 'Flutter Demo Home Page'),
-    );
-  }
-}
-
-class MyHomePage extends StatefulWidget {
-  const MyHomePage({super.key, required this.title});
-
-  final String title;
-
-  @override
-  State<MyHomePage> createState() => _MyHomePageState();
-}
-
-class _MyHomePageState extends State<MyHomePage> {
-  int _counter = 0;
-
-  void _incrementCounter() {
-    setState(() {
-      _counter++;
-    });
-  }
-
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        backgroundColor: Theme.of(context).colorScheme.inversePrimary,
-        title: Text(widget.title),
-      ),
-      body: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[
-            const Text(
-              'You have pushed the button this many times:',
+    return ScreenUtilInit(
+        designSize: const Size(374, 812),
+        minTextAdapt: false,
+        fontSizeResolver: FontSizeResolvers.height,
+        splitScreenMode: true,
+        builder: (_, child) {
+          return MaterialApp.router(
+            theme: ThemeData(
+              useMaterial3: true,
+              brightness: Brightness.light,
             ),
-            Text(
-              '$_counter',
-              style: Theme.of(context).textTheme.headlineMedium,
-            ),
-          ],
-        ),
-      ),
-      floatingActionButton: FloatingActionButton(
-        onPressed: _incrementCounter,
-        tooltip: 'Increment',
-        child: const Icon(Icons.add),
-      ),
-    );
+            debugShowCheckedModeBanner: false,
+            routerConfig: router,
+          );
+        });
   }
 }
