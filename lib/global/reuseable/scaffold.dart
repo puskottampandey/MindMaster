@@ -32,7 +32,7 @@ class ReuseableScaffold extends StatelessWidget {
       floatingActionButtonLocation:
           bottomnavigation! ? FloatingActionButtonLocation.centerDocked : null,
       floatingActionButton: bottomnavigation! ? floatingActionButton : null,
-      backgroundColor: changeColor! ? color : kvverylightColor,
+      backgroundColor: changeColor! ? color : AppColors.whiteColor,
       bottomNavigationBar: bottomnavigation! ? bottomnavigationWidget : null,
       appBar: appbar
           ? AppBar(
@@ -40,12 +40,12 @@ class ReuseableScaffold extends StatelessWidget {
               iconTheme: IconThemeData(
                   color: changeColor! ? kvverylightColor : kPrimaryDarkColor),
               centerTitle: true,
-              backgroundColor: changeColor! ? color : kvverylightColor,
+              backgroundColor: changeColor! ? color : AppColors.whiteColor,
               title: Text(
                 text!,
                 style: textPoppions.bodyLarge!.copyWith(
                   fontSize: 16.sp,
-                  color: changeColor! ? kvverylightColor : kseconadaryDarkColor,
+                  color: changeColor! ? kvverylightColor : klightDarkColor,
                   fontWeight: FontWeight.w600,
                 ),
               ),

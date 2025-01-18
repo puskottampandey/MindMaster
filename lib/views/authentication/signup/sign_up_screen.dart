@@ -11,7 +11,6 @@ import '../../../global/reuseable/scaffold.dart';
 final nametext = AutoDisposeProvider((ref) => TextEditingController());
 final emailtext = AutoDisposeProvider((ref) => TextEditingController());
 final passwordtext = AutoDisposeProvider((ref) => TextEditingController());
-final formKeySignUp = StateProvider((ref) => GlobalKey<FormState>());
 
 class SignUpScreen extends ConsumerWidget {
   const SignUpScreen({super.key});
@@ -21,10 +20,11 @@ class SignUpScreen extends ConsumerWidget {
     final nameController = ref.watch(nametext);
     final emailController = ref.watch(emailtext);
     final passwordController = ref.watch(passwordtext);
-    final signUp = ref.watch(formKeySignUp);
+
+    final GlobalKey<FormState> _signUp = GlobalKey<FormState>();
     return ReuseableScaffold(
       appbar: true,
-      text: "Sign Up",
+      text: "Let's Sign Up",
       child: SingleChildScrollView(
         child: Padding(
             padding: EdgeInsets.symmetric(
@@ -34,10 +34,24 @@ class SignUpScreen extends ConsumerWidget {
             child: Column(
               children: [
                 SizedBox(
-                  height: 100.h,
+                  height: 30.h,
+                ),
+                Align(
+                  alignment: Alignment.topLeft,
+                  child: Text(
+                    "Create\nAccount!",
+                    style: textPoppions.bodyLarge!.copyWith(
+                      fontSize: 24.sp,
+                      color: kPrimaryDarkColor,
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
+                ),
+                SizedBox(
+                  height: 30.h,
                 ),
                 Form(
-                  key: signUp,
+                  key: _signUp,
                   child: Column(
                     children: [
                       ReusableFormField(
@@ -86,19 +100,8 @@ class SignUpScreen extends ConsumerWidget {
                         bgcolor: kPrimaryGreenColor,
                         textcolor: kwhitelightColor,
                         ontap: () {
-                          if (signUp.currentState!.validate()) {}
+                          if (_signUp.currentState!.validate()) {}
                         },
-                      ),
-                      SizedBox(
-                        height: 10.h,
-                      ),
-                      Text(
-                        "Or with",
-                        style: textPoppions.bodyLarge!.copyWith(
-                          fontSize: 14.sp,
-                          color: kPrimarylightColor,
-                          fontWeight: FontWeight.w600,
-                        ),
                       ),
                       SizedBox(
                         height: 10.h,
@@ -119,7 +122,6 @@ class SignUpScreen extends ConsumerWidget {
                                 TextSpan(
                                   text: "SignIn",
                                   style: textPoppions.bodyLarge!.copyWith(
-                                    decoration: TextDecoration.underline,
                                     fontSize: 12.sp,
                                     color: kPrimaryGreenColor,
                                     fontWeight: FontWeight.w600,

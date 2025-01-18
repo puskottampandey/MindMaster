@@ -1,32 +1,32 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:go_router/go_router.dart';
+import 'package:mindmaster/global/reuseable/button.dart';
 import 'package:mindmaster/global/reuseable/formfield.dart';
 import 'package:mindmaster/global/reuseable/scaffold.dart';
 
-import 'package:go_router/go_router.dart';
-
 import '../../../global/constants/colors_text.dart';
-import '../../../global/reuseable/button.dart';
 
-final emailForget = AutoDisposeProvider((ref) => TextEditingController());
+final resetProvider = AutoDisposeProvider((ref) => TextEditingController());
 
-class ForgotPassword extends ConsumerWidget {
-  const ForgotPassword({super.key});
+class ResetPasswordScreen extends ConsumerWidget {
+  const ResetPasswordScreen({super.key});
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final forgetEmail = ref.watch(emailForget);
-    final GlobalKey<FormState> _forgot = GlobalKey<FormState>();
+    final reset = ref.watch(resetProvider);
+    final GlobalKey<FormState> _reset = GlobalKey<FormState>();
     return ReuseableScaffold(
       appbar: true,
-      text: "Forget Password",
+      text: "Reset Password",
       child: Padding(
         padding: EdgeInsets.symmetric(vertical: 16.h, horizontal: 16.w),
         child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Text(
-              "We need your registration email to send your password reset code! ",
+              "Enter a new Password",
               style: textPoppions.bodyLarge!.copyWith(
                 fontSize: 14.sp,
                 color: klightDarkColor,
@@ -37,31 +37,43 @@ class ForgotPassword extends ConsumerWidget {
               height: 100.h,
             ),
             Form(
-              key: _forgot,
+              key: _reset,
               child: Column(
                 children: [
                   ReusableFormField(
-                    controller: forgetEmail,
-                    hint: "Email",
+                    controller: reset,
+                    hint: "New Password",
+                    obscureText: true,
                     textInputAction: TextInputAction.next,
-                    keyboardType: TextInputType.emailAddress,
                     validator: (String? value) {
                       if (value == null || value.isEmpty) {
-                        return "Enter a email";
+                        return "Enter a password";
+                      }
+                      return null;
+                    },
+                  ),
+                  ReusableFormField(
+                    controller: reset,
+                    hint: "Confirm Password",
+                    obscureText: true,
+                    textInputAction: TextInputAction.next,
+                    validator: (String? value) {
+                      if (value == null || value.isEmpty) {
+                        return "Enter a valid password";
                       }
                       return null;
                     },
                   ),
                   SizedBox(
-                    height: 20.h,
+                    height: 50.h,
                   ),
                   ReuseableButton(
                     bgcolor: kPrimaryGreenColor,
-                    text: "Send code",
+                    text: "Confirm",
                     textcolor: kvverylightColor,
                     ontap: () {
-                      if (_forgot.currentState!.validate()) {}
-                      context.push("/verificationCode");
+                      if (_reset.currentState!.validate()) {}
+                      // context.push("/myApp");
                     },
                   ),
                 ],

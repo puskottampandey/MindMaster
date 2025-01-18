@@ -11,7 +11,6 @@ import '../../../global/reuseable/formfield.dart';
 
 final email = AutoDisposeProvider((ref) => TextEditingController());
 final password = AutoDisposeProvider((ref) => TextEditingController());
-final formKeySignIn = StateProvider((ref) => GlobalKey<FormState>());
 
 class SignInScreen extends ConsumerWidget {
   const SignInScreen({super.key});
@@ -20,10 +19,10 @@ class SignInScreen extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final emailcontroller = ref.watch(email);
     final passwordcontroller = ref.watch(password);
-    final signIn = ref.watch(formKeySignIn);
+    final GlobalKey<FormState> _signIn = GlobalKey<FormState>();
     return ReuseableScaffold(
       appbar: true,
-      text: "Sign In",
+      text: "Let's Sign In",
       child: SingleChildScrollView(
         child: Padding(
           padding: EdgeInsets.symmetric(
@@ -33,10 +32,24 @@ class SignInScreen extends ConsumerWidget {
           child: Column(
             children: [
               SizedBox(
-                height: 100.h,
+                height: 30.h,
+              ),
+              Align(
+                alignment: Alignment.topLeft,
+                child: Text(
+                  "WelCome\nBack!",
+                  style: textPoppions.bodyLarge!.copyWith(
+                    fontSize: 24.sp,
+                    color: kPrimaryDarkColor,
+                    fontWeight: FontWeight.bold,
+                  ),
+                ),
+              ),
+              SizedBox(
+                height: 30.h,
               ),
               Form(
-                key: signIn,
+                key: _signIn,
                 child: Column(
                   children: [
                     ReusableFormField(
@@ -68,19 +81,7 @@ class SignInScreen extends ConsumerWidget {
                       },
                     ),
                     SizedBox(
-                      height: 20.h,
-                    ),
-                    ReuseableButton(
-                      bgcolor: kPrimaryGreenColor,
-                      text: "Sign In",
-                      textcolor: kvverylightColor,
-                      ontap: () {
-                        if (signIn.currentState!.validate()) {}
-                        context.push("/myApp");
-                      },
-                    ),
-                    SizedBox(
-                      height: 10.h,
+                      height: 5.h,
                     ),
                     GestureDetector(
                       onTap: () {
@@ -99,7 +100,19 @@ class SignInScreen extends ConsumerWidget {
                       ),
                     ),
                     SizedBox(
-                      height: 20.h,
+                      height: 40.h,
+                    ),
+                    ReuseableButton(
+                      bgcolor: kPrimaryGreenColor,
+                      text: "Sign In",
+                      textcolor: kvverylightColor,
+                      ontap: () {
+                        if (_signIn.currentState!.validate()) {}
+                        context.go("/myApp");
+                      },
+                    ),
+                    SizedBox(
+                      height: 10.h,
                     ),
                     GestureDetector(
                       onTap: () {
@@ -117,7 +130,6 @@ class SignInScreen extends ConsumerWidget {
                               TextSpan(
                                 text: "SignUp",
                                 style: textPoppions.bodyLarge!.copyWith(
-                                  decoration: TextDecoration.underline,
                                   fontSize: 12.sp,
                                   color: kPrimaryGreenColor,
                                   fontWeight: FontWeight.w600,

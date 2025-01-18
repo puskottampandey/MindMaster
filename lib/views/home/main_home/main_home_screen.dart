@@ -41,7 +41,6 @@ class MainHomeScreen extends ConsumerWidget {
     final currentIndex = ref.watch(currentIndexProvider);
     return ReuseableScaffold(
         appbar: true,
-        text: "Home",
         bottomnavigation: true,
         bottomnavigationWidget: SalomonBottomBar(
           itemPadding: EdgeInsets.symmetric(horizontal: 10.w, vertical: 10.h),
@@ -52,9 +51,9 @@ class MainHomeScreen extends ConsumerWidget {
           },
           items: [
             salomonBar(currentIndex, Icons.home, "Home", 0),
-            salomonBar(currentIndex, Icons.domain, "Listing", 1),
-            salomonBar(currentIndex, Icons.event, "Reservations", 2),
-            salomonBar(currentIndex, Icons.construction, "Repair", 3),
+            salomonBar(currentIndex, Icons.chat, "Chat", 1),
+            salomonBar(currentIndex, Icons.history, "History", 2),
+            salomonBar(currentIndex, Icons.person, "Profile", 3),
           ],
         ),
         child: screens[currentIndex]);

@@ -129,7 +129,11 @@ class _ReusableFormFieldState extends State<ReusableFormField> {
         //   shadowColor: AppColors.pureWhiteColor,
         //   borderRadius: BorderRadius.circular(8.h),
         //   child:
-        formField(context),
+        Material(
+          borderRadius: BorderRadius.circular(8.r),
+          color: AppColors.pureWhiteColor,
+          child: formField(context),
+        ),
         // ),
         errorTextWidget()
       ],
@@ -141,7 +145,7 @@ class _ReusableFormFieldState extends State<ReusableFormField> {
       style: textPoppions.titleSmall?.copyWith(
           color: AppColors.blackColor,
           fontSize: 14.sp,
-          fontWeight: FontWeight.w500),
+          fontWeight: FontWeight.w600),
       onTap: widget.onTap,
       minLines: widget.minLines,
       focusNode: widget.focusNode,
@@ -161,36 +165,37 @@ class _ReusableFormFieldState extends State<ReusableFormField> {
       inputFormatters: widget.inputFormatter,
       decoration: InputDecoration(
           counterText: "",
-          filled: widget.isFilled,
+          filled: true,
           hintText: widget.hint,
           fillColor: AppColors.pureWhiteColor,
           hintStyle: textPoppions.titleSmall?.copyWith(
               color: AppColors.iconColor,
               fontSize: 14.sp,
-              fontWeight: FontWeight.w400),
-          focusedBorder: OutlineInputBorder(
-              borderRadius: BorderRadius.circular(8.r),
-              borderSide: const BorderSide(
-                color: AppColors.primaryColor,
-                width: 1.5,
-              )),
+              fontWeight: FontWeight.w600),
+          // focusedBorder: OutlineInputBorder(
+          //   borderRadius: BorderRadius.circular(8.r),
+          //   // borderSide: const BorderSide(
+          //   //   color: AppColors.primaryColor,
+          //   //   width: 1.5,
+          //   // ),
+          // ),
           border: OutlineInputBorder(
-            borderRadius: BorderRadius.circular(8.r),
-            borderSide: const BorderSide(
-              color: AppColors.primaryColor,
-              width: 1.5,
-            ),
-          ),
-          focusedErrorBorder: OutlineInputBorder(
-            borderRadius: BorderRadius.circular(8.r),
-            borderSide: BorderSide(color: AppColors.redColor, width: 1.5),
-          ),
-          enabledBorder: OutlineInputBorder(
               borderRadius: BorderRadius.circular(8.r),
-              borderSide: const BorderSide(
-                color: AppColors.iconColor,
-                width: 1.5,
-              )),
+              borderSide: BorderSide.none),
+          // focusedErrorBorder: OutlineInputBorder(
+          //   borderRadius: BorderRadius.circular(8.r),
+          //   // borderSide: BorderSide(
+          //   //   color: AppColors.redColor,
+          //   //   width: 1.5,
+          //   // ),
+          // ),
+          // enabledBorder: OutlineInputBorder(
+          //   borderRadius: BorderRadius.circular(8.r),
+          //   // borderSide: const BorderSide(
+          //   //   color: AppColors.iconColor,
+          //   //   width: 1.5,
+          //   // ),
+          // ),
           errorStyle: textPoppions.titleMedium!.copyWith(
             color: AppColors.redColor,
             fontSize: 12.sp,
@@ -205,9 +210,9 @@ class _ReusableFormFieldState extends State<ReusableFormField> {
               : null,
           isDense: true,
           // Added this
-          errorBorder: OutlineInputBorder(
-              borderRadius: BorderRadius.circular(8.r),
-              borderSide: BorderSide(color: AppColors.redColor, width: 1.5)),
+          // errorBorder: OutlineInputBorder(
+          //     borderRadius: BorderRadius.circular(8.r),
+          //     borderSide: BorderSide(color: AppColors.redColor, width: 1.5)),
           contentPadding: widget.contentPadding ??
               EdgeInsets.symmetric(horizontal: 20.w, vertical: 12.h),
           suffixIcon: widget.sufixIcon ??

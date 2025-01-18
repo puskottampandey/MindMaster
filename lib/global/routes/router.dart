@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:mindmaster/global/routes/route_constants.dart';
 import 'package:mindmaster/views/authentication/forgot_password/forgot_password.dart';
+import 'package:mindmaster/views/authentication/forgot_password/reset_password_screen.dart';
+import 'package:mindmaster/views/authentication/forgot_password/verification_code_screen.dart';
 import 'package:mindmaster/views/authentication/signin/sign_in_screen.dart';
 import 'package:mindmaster/views/authentication/signup/sign_up_screen.dart';
 import 'package:mindmaster/views/home/home/home_screen.dart';
@@ -20,6 +22,12 @@ final GoRouter router = GoRouter(
         path: '/',
         builder: (context, state) {
           return const SplashScreen();
+        }),
+    GoRoute(
+        name: RouteConstants.myApp,
+        path: '/myApp',
+        builder: (context, state) {
+          return MainHomeScreen();
         }),
     GoRoute(
         name: RouteConstants.onboard,
@@ -46,10 +54,16 @@ final GoRouter router = GoRouter(
           return const ForgotPassword();
         }),
     GoRoute(
-        name: RouteConstants.myApp,
-        path: '/myApp',
+        name: RouteConstants.verificationCode,
+        path: '/verificationCode',
         builder: (context, state) {
-          return MainHomeScreen();
+          return const VerificationCodeScreen();
+        }),
+    GoRoute(
+        name: RouteConstants.resetPassword,
+        path: '/resetPassword',
+        builder: (context, state) {
+          return const ResetPasswordScreen();
         }),
   ],
 );

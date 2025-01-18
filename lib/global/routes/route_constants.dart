@@ -5,4 +5,6 @@ class RouteConstants {
   static String signUp = 'signUp';
   static String signIn = 'signIn';
   static String forgotPassword = 'forgotPassword';
+  static String verificationCode = 'verificationCode';
+  static String resetPassword = 'resetPassword';
 }

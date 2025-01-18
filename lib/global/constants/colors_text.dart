@@ -10,7 +10,7 @@ class AppColors {
   static const Color iconColor = Color(0xff8E8E93);
   static Color greyColor = Colors.grey.shade300;
   static Color redColor = Colors.red;
-  static const Color whiteColor = Color(0xfff5f7f9);
+  static const Color whiteColor = Color.fromARGB(255, 238, 241, 244);
   static const Color pureWhiteColor = Color(0xffffffff);
   static const Color blackColor = Color(0xff212427);
   static Color loadingbodycolor = Colors.white.withOpacity(0);
@@ -21,7 +21,7 @@ class AppColors {
 
 const kPrimaryDarkColor = Color(0xff0D0E0F);
 const kseconadaryDarkColor = Color(0xff161719);
-const klightDarkColor = Color(0xff464A4D);
+const klightDarkColor = Color.fromARGB(255, 54, 55, 56);
 const kverylightDarkColor = Color(0xff7A7E80);
 
 const kPrimarylightColor = Color(0xff91919F);
