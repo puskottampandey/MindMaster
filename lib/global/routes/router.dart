@@ -8,6 +8,7 @@ import 'package:mindmaster/views/authentication/signin/sign_in_screen.dart';
 import 'package:mindmaster/views/authentication/signup/sign_up_screen.dart';
 import 'package:mindmaster/views/doctor_book/doctor_details.dart';
 import 'package:mindmaster/views/doctor_book/payment_screen.dart';
+import 'package:mindmaster/views/home/chat/chat_screen.dart';
 import 'package:mindmaster/views/home/home/home_screen.dart';
 import 'package:mindmaster/views/home/main_home/main_home_screen.dart';
 import 'package:mindmaster/views/oboarding/onboarding_screen.dart';
@@ -85,6 +86,13 @@ final GoRouter router = GoRouter(
         path: '/payment',
         builder: (context, state) {
           return const PaymentScreen();
+        }),
+    GoRoute(
+        name: RouteConstants.chat,
+        path: '/chat',
+        builder: (context, state) {
+          final value = state.extra as String;
+          return ChatScren(data: value);
         }),
   ],
 );

@@ -10,4 +10,5 @@ class RouteConstants {
   static String search = "search";
   static String doctorDetails = "doctorDetails";
   static String payment = "payment";
+  static String chat = "chat";
 }
