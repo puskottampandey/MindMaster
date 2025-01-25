@@ -59,7 +59,7 @@ class VerificationCodeScreen extends ConsumerWidget {
                       "Resend Code",
                       style: textPoppions.bodyLarge!.copyWith(
                         fontSize: 14.sp,
-                        color: kPrimaryGreenColor,
+                        color: AppColors.primaryColor,
                         fontWeight: FontWeight.w600,
                       ),
                     ),
@@ -68,7 +68,7 @@ class VerificationCodeScreen extends ConsumerWidget {
                     height: 50.h,
                   ),
                   ReuseableButton(
-                    bgcolor: kPrimaryGreenColor,
+                    bgcolor: AppColors.primaryColor,
                     text: "Confirm",
                     textcolor: kvverylightColor,
                     ontap: () {

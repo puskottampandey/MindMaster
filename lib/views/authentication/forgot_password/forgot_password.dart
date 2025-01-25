@@ -56,7 +56,7 @@ class ForgotPassword extends ConsumerWidget {
                     height: 20.h,
                   ),
                   ReuseableButton(
-                    bgcolor: kPrimaryGreenColor,
+                    bgcolor: AppColors.primaryColor,
                     text: "Send code",
                     textcolor: kvverylightColor,
                     ontap: () {

@@ -7,4 +7,7 @@ class RouteConstants {
   static String forgotPassword = 'forgotPassword';
   static String verificationCode = 'verificationCode';
   static String resetPassword = 'resetPassword';
+  static String search = "search";
+  static String doctorDetails = "doctorDetails";
+  static String payment = "payment";
 }

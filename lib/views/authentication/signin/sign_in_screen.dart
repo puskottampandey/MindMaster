@@ -13,15 +13,17 @@ final email = AutoDisposeProvider((ref) => TextEditingController());
 final password = AutoDisposeProvider((ref) => TextEditingController());
 
 class SignInScreen extends ConsumerWidget {
-  const SignInScreen({super.key});
+  final GlobalKey<FormState> _signIn = GlobalKey<FormState>();
+  SignInScreen({super.key});
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final emailcontroller = ref.watch(email);
     final passwordcontroller = ref.watch(password);
-    final GlobalKey<FormState> _signIn = GlobalKey<FormState>();
+
     return ReuseableScaffold(
       appbar: true,
+      back: false,
       text: "Let's Sign In",
       child: SingleChildScrollView(
         child: Padding(
@@ -53,6 +55,7 @@ class SignInScreen extends ConsumerWidget {
                 child: Column(
                   children: [
                     ReusableFormField(
+                      obscureText: false,
                       controller: emailcontroller,
                       hint: "Email",
                       textInputAction: TextInputAction.next,
@@ -93,7 +96,7 @@ class SignInScreen extends ConsumerWidget {
                           "Forgot Password?",
                           style: textPoppions.bodyLarge!.copyWith(
                             fontSize: 12.sp,
-                            color: kPrimaryGreenColor,
+                            color: AppColors.primaryColor,
                             fontWeight: FontWeight.w600,
                           ),
                         ),
@@ -103,7 +106,7 @@ class SignInScreen extends ConsumerWidget {
                       height: 40.h,
                     ),
                     ReuseableButton(
-                      bgcolor: kPrimaryGreenColor,
+                      bgcolor: AppColors.primaryColor,
                       text: "Sign In",
                       textcolor: kvverylightColor,
                       ontap: () {
@@ -131,7 +134,7 @@ class SignInScreen extends ConsumerWidget {
                                 text: "SignUp",
                                 style: textPoppions.bodyLarge!.copyWith(
                                   fontSize: 12.sp,
-                                  color: kPrimaryGreenColor,
+                                  color: AppColors.primaryColor,
                                   fontWeight: FontWeight.w600,
                                 ),
                               )

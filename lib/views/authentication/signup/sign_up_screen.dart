@@ -66,6 +66,9 @@ class SignUpScreen extends ConsumerWidget {
                           return null;
                         },
                       ),
+                      SizedBox(
+                        height: 10.h,
+                      ),
                       ReusableFormField(
                         textInputAction: TextInputAction.next,
                         controller: emailController,
@@ -77,6 +80,9 @@ class SignUpScreen extends ConsumerWidget {
                           }
                           return null;
                         },
+                      ),
+                      SizedBox(
+                        height: 10.h,
                       ),
                       ReusableFormField(
                         controller: passwordController,
@@ -97,7 +103,7 @@ class SignUpScreen extends ConsumerWidget {
                       ReuseableButton(
                         minimumSize: Size(double.infinity, 40.h),
                         text: "Sign Up",
-                        bgcolor: kPrimaryGreenColor,
+                        bgcolor: AppColors.primaryColor,
                         textcolor: kwhitelightColor,
                         ontap: () {
                           if (_signUp.currentState!.validate()) {}
@@ -123,7 +129,7 @@ class SignUpScreen extends ConsumerWidget {
                                   text: "SignIn",
                                   style: textPoppions.bodyLarge!.copyWith(
                                     fontSize: 12.sp,
-                                    color: kPrimaryGreenColor,
+                                    color: AppColors.primaryColor,
                                     fontWeight: FontWeight.w600,
                                   ),
                                 )

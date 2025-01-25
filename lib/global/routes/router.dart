@@ -6,9 +6,12 @@ import 'package:mindmaster/views/authentication/forgot_password/reset_password_s
 import 'package:mindmaster/views/authentication/forgot_password/verification_code_screen.dart';
 import 'package:mindmaster/views/authentication/signin/sign_in_screen.dart';
 import 'package:mindmaster/views/authentication/signup/sign_up_screen.dart';
+import 'package:mindmaster/views/doctor_book/doctor_details.dart';
+import 'package:mindmaster/views/doctor_book/payment_screen.dart';
 import 'package:mindmaster/views/home/home/home_screen.dart';
 import 'package:mindmaster/views/home/main_home/main_home_screen.dart';
 import 'package:mindmaster/views/oboarding/onboarding_screen.dart';
+import 'package:mindmaster/views/search/search_screen.dart';
 
 import '../../views/splash/splash_screen.dart';
 
@@ -39,7 +42,7 @@ final GoRouter router = GoRouter(
         name: RouteConstants.signIn,
         path: '/signIn',
         builder: (context, state) {
-          return const SignInScreen();
+          return SignInScreen();
         }),
     GoRoute(
         name: RouteConstants.signUp,
@@ -64,6 +67,24 @@ final GoRouter router = GoRouter(
         path: '/resetPassword',
         builder: (context, state) {
           return const ResetPasswordScreen();
+        }),
+    GoRoute(
+        name: RouteConstants.search,
+        path: '/search',
+        builder: (context, state) {
+          return const SearchScreen();
+        }),
+    GoRoute(
+        name: RouteConstants.doctorDetails,
+        path: '/doctorDetails',
+        builder: (context, state) {
+          return const DoctorDetails();
+        }),
+    GoRoute(
+        name: RouteConstants.payment,
+        path: '/payment',
+        builder: (context, state) {
+          return const PaymentScreen();
         }),
   ],
 );

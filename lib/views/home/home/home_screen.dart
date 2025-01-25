@@ -1,17 +1,287 @@
 import 'package:flutter/material.dart';
 
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:go_router/go_router.dart';
+import 'package:mindmaster/global/reuseable/button.dart';
+import 'package:mindmaster/global/reuseable/formfield.dart';
 
 import '../../../global/constants/colors_text.dart';
 
 class HomeScreen extends StatelessWidget {
-  const HomeScreen({super.key});
-
+  HomeScreen({super.key});
+  final List<String> _list = [
+    "Doctor",
+    "Appointment",
+    "Medicine",
+  ];
   @override
   Widget build(BuildContext context) {
-    return const Scaffold(
+    return Scaffold(
       backgroundColor: AppColors.whiteColor,
-      body: Text("Personal"),
+      body: Padding(
+        padding: EdgeInsets.symmetric(vertical: 16.h, horizontal: 16.w),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            ReusableFormField(
+              onTap: () {
+                context.push("/search");
+              },
+              readonly: true,
+              controller: TextEditingController(),
+              prefix: Icons.search,
+              hint: "Search .........",
+              sufixIcon: Container(
+                decoration: BoxDecoration(
+                  color: AppColors.primaryColor,
+                  borderRadius: BorderRadius.circular(8.r),
+                ),
+                child: const Icon(
+                  Icons.filter_list,
+                  color: AppColors.whiteColor,
+                ),
+              ),
+            ),
+            SizedBox(
+              height: 10.h,
+            ),
+            Text(
+              "Specialist",
+              style: textPoppions.headlineMedium
+                  ?.copyWith(fontSize: 16.sp, fontWeight: FontWeight.w600),
+            ),
+            SizedBox(
+              height: 170.h,
+              child: ListView.builder(
+                scrollDirection: Axis.horizontal,
+                itemCount: 6,
+                itemBuilder: (BuildContext context, int index) {
+                  return Column(
+                    children: [
+                      GestureDetector(
+                        onTap: () {
+                          context.push('/doctorDetails');
+                        },
+                        child: Container(
+                          width: 100.w,
+                          margin: EdgeInsets.symmetric(
+                              horizontal: 8.w, vertical: 8.h),
+                          decoration: BoxDecoration(
+                            color: AppColors.pureWhiteColor,
+                            borderRadius: BorderRadius.circular(8.r),
+                          ),
+                          child: Column(
+                            children: [
+                              Container(
+                                decoration: BoxDecoration(
+                                  color: AppColors.primaryColor,
+                                  borderRadius: BorderRadius.circular(8.r),
+                                ),
+                                child: Image.asset(
+                                  "assets/images/docotors.png",
+                                  height: 80.h,
+                                  width: 100.w,
+                                  fit: BoxFit.contain,
+                                ),
+                              ),
+                              Padding(
+                                padding: EdgeInsets.symmetric(
+                                    vertical: 8.h, horizontal: 8.w),
+                                child: Column(
+                                  children: [
+                                    Text(
+                                      "Dr.Pandey Puskottam ",
+                                      style:
+                                          textPoppions.headlineMedium?.copyWith(
+                                        fontSize: 10.sp,
+                                        fontWeight: FontWeight.w600,
+                                      ),
+                                      textAlign: TextAlign.center,
+                                    ),
+                                    Text(
+                                      "Psychiatrist",
+                                      style: textPoppions.headlineMedium
+                                          ?.copyWith(
+                                              color: AppColors.iconColor,
+                                              fontSize: 10.sp,
+                                              fontWeight: FontWeight.w600),
+                                      textAlign: TextAlign.center,
+                                    ),
+                                  ],
+                                ),
+                              ),
+                            ],
+                          ),
+                        ),
+                      ),
+                    ],
+                  );
+                },
+              ),
+            ),
+            Text(
+              "Services",
+              style: textPoppions.headlineMedium
+                  ?.copyWith(fontSize: 16.sp, fontWeight: FontWeight.w600),
+            ),
+            SizedBox(
+              height: 100.h,
+              child: ListView.builder(
+                scrollDirection: Axis.horizontal,
+                itemCount: _list.length,
+                itemBuilder: (BuildContext context, int index) {
+                  final item = _list[index];
+                  return Column(
+                    children: [
+                      Container(
+                        width: 100.w,
+                        margin: EdgeInsets.symmetric(
+                            horizontal: 8.w, vertical: 8.h),
+                        decoration: BoxDecoration(
+                          color: AppColors.pureWhiteColor,
+                          borderRadius: BorderRadius.circular(8.r),
+                        ),
+                        child: Padding(
+                          padding: const EdgeInsets.all(8.0),
+                          child: Column(
+                            children: [
+                              const Icon(
+                                Icons.calendar_month,
+                              ),
+                              Padding(
+                                padding: EdgeInsets.symmetric(
+                                    vertical: 8.h, horizontal: 8.w),
+                                child: Column(
+                                  children: [
+                                    Text(
+                                      item,
+                                      style:
+                                          textPoppions.headlineMedium?.copyWith(
+                                        fontSize: 10.sp,
+                                        color: AppColors.iconColor,
+                                        fontWeight: FontWeight.w600,
+                                      ),
+                                      textAlign: TextAlign.center,
+                                    ),
+                                  ],
+                                ),
+                              ),
+                            ],
+                          ),
+                        ),
+                      ),
+                    ],
+                  );
+                },
+              ),
+            ),
+            Text(
+              "Available Doctors",
+              style: textPoppions.headlineMedium?.copyWith(
+                fontSize: 16.sp,
+                fontWeight: FontWeight.w600,
+              ),
+            ),
+            SizedBox(
+              height: 200.h,
+              child: ListView.builder(
+                scrollDirection: Axis.horizontal,
+                itemCount: 6,
+                itemBuilder: (BuildContext context, int index) {
+                  return GestureDetector(
+                    onTap: () {
+                      context.push('/doctorDetails');
+                    },
+                    child: Container(
+                      margin:
+                          EdgeInsets.symmetric(horizontal: 8.w, vertical: 8.h),
+                      decoration: BoxDecoration(
+                        color: AppColors.primaryColor,
+                        borderRadius: BorderRadius.circular(8.r),
+                      ),
+                      child: Padding(
+                        padding: EdgeInsets.symmetric(
+                            vertical: 10.h, horizontal: 10.w),
+                        child: Row(
+                          children: [
+                            Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                Text(
+                                  "Looking For your\nMental Health",
+                                  style: textPoppions.headlineMedium?.copyWith(
+                                    color: AppColors.whiteColor,
+                                    fontSize: 12.sp,
+                                    fontWeight: FontWeight.w600,
+                                  ),
+                                ),
+                                Text(
+                                  "Specialist Doctor ",
+                                  style: textPoppions.headlineMedium?.copyWith(
+                                    color: AppColors.whiteColor,
+                                    fontSize: 12.sp,
+                                    fontWeight: FontWeight.w600,
+                                  ),
+                                ),
+                                SizedBox(
+                                  height: 10.h,
+                                ),
+                                Text(
+                                  "Dr.Pandey",
+                                  style: textPoppions.headlineMedium?.copyWith(
+                                    color: AppColors.whiteColor,
+                                    fontSize: 10.sp,
+                                    fontWeight: FontWeight.w600,
+                                  ),
+                                ),
+                                Text(
+                                  "May 25 -May 27",
+                                  style: textPoppions.headlineMedium?.copyWith(
+                                    color: AppColors.whiteColor,
+                                    fontSize: 10.sp,
+                                    fontWeight: FontWeight.w600,
+                                  ),
+                                ),
+                                SizedBox(
+                                  height: 20.h,
+                                ),
+                                Container(
+                                  padding: EdgeInsets.symmetric(
+                                      vertical: 6.h, horizontal: 6.w),
+                                  decoration: BoxDecoration(
+                                      color: const Color.fromARGB(
+                                          255, 49, 157, 245),
+                                      borderRadius: BorderRadius.circular(8.r)),
+                                  child: Text(
+                                    "Book now",
+                                    style:
+                                        textPoppions.headlineMedium?.copyWith(
+                                      color: AppColors.whiteColor,
+                                      fontSize: 10.sp,
+                                      fontWeight: FontWeight.w600,
+                                    ),
+                                  ),
+                                )
+                              ],
+                            ),
+                            Image.asset(
+                              "assets/images/docotors.png",
+                              height: 200.h,
+                              width: 100.w,
+                              fit: BoxFit.contain,
+                            ),
+                          ],
+                        ),
+                      ),
+                    ),
+                  );
+                },
+              ),
+            ),
+          ],
+        ),
+      ),
     );
   }
 }
@@ -165,7 +435,7 @@ class HomeScreen extends StatelessWidget {
 //                           spots: _getSpots(_selectedMetric),
 //                           isCurved: true,
 //                           barWidth: 2,
-//                           color: Colors.blue,
+//                           color: ,
 //                           belowBarData: BarAreaData(show: false),
 //                         ),
 //                         LineChartBarData(

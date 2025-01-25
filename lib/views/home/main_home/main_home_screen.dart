@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:mindmaster/global/utils/greeting_time.dart';
 import 'package:salomon_bottom_bar/salomon_bottom_bar.dart';
 
 import '../../../global/constants/colors_text.dart';
@@ -18,7 +19,7 @@ class MainHomeScreen extends ConsumerWidget {
   MainHomeScreen({super.key});
 
   final List<Widget> screens = [
-    const HomeScreen(),
+    HomeScreen(),
     const NewsScreen(),
     const PersonalScreen(),
     const ProfileScreen(),
@@ -41,7 +42,17 @@ class MainHomeScreen extends ConsumerWidget {
     final currentIndex = ref.watch(currentIndexProvider);
     return ReuseableScaffold(
         appbar: true,
+        text: "Hey, ${GreetingUtils().greeting()}",
         bottomnavigation: true,
+        center: false,
+        back: false,
+        actions: [
+          IconButton(
+              onPressed: () {},
+              icon: const Icon(
+                Icons.notifications,
+              ))
+        ],
         bottomnavigationWidget: SalomonBottomBar(
           itemPadding: EdgeInsets.symmetric(horizontal: 10.w, vertical: 10.h),
           backgroundColor: AppColors.pureWhiteColor,

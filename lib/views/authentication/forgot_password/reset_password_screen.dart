@@ -52,6 +52,9 @@ class ResetPasswordScreen extends ConsumerWidget {
                       return null;
                     },
                   ),
+                  SizedBox(
+                    height: 20.h,
+                  ),
                   ReusableFormField(
                     controller: reset,
                     hint: "Confirm Password",
@@ -68,7 +71,7 @@ class ResetPasswordScreen extends ConsumerWidget {
                     height: 50.h,
                   ),
                   ReuseableButton(
-                    bgcolor: kPrimaryGreenColor,
+                    bgcolor: AppColors.primaryColor,
                     text: "Confirm",
                     textcolor: kvverylightColor,
                     ontap: () {
